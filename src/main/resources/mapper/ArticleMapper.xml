@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ArticleMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.pojo.Article">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="coverImg" column="cover_img" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="VARCHAR"/>
+            <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
+            <result property="createUser" column="create_user" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,content,
+        cover_img,state,category_id,
+        create_user,create_time,update_time
+    </sql>
+    <insert id="addArticle">
+        insert into article (title,content,cover_img,state,category_id,create_user,create_time,update_time)
+        values (#{title},#{content},#{coverImg},#{state},#{categoryId},#{id},now(),now());
+    </insert>
+    <update id="updateArticle">
+        update article set title=#{title},content=#{content},cover_img=#{coverImg},state=#{state},category_id=#{categoryId},update_time=now() where id=#{id}
+    </update>
+    <delete id="deleteAll">
+        delete from article
+        ALTER TABLE article AUTO_INCREMENT = 1;
+    </delete>
+    <select id="getDetailById" resultType="com.example.pojo.Article">
+        select  * from article where id=#{id}
+    </select>
+    <select id="findList" resultType="com.example.pojo.Article">
+        <!-- 如果有categoryId就填充categoryId，没有就不管 -->
+        <!-- 动态SQL -->
+        <!-- where标签 后面以and或者or开头会自动删除 -->
+        <!-- 如果categoryId不为空，则拼接条件 -->
+        <!-- test属性：判断categoryId是否为空，不为空拼接条件 -->
+        select * from article
+        <where>
+            <if test="categoryId != null">
+                category_id=#{categoryId}
+            </if>
+            <if test="state != null">
+                and state=#{state}
+            </if>
+            <if test="userId != null">
+                and create_user=#{userId}
+            </if>
+        </where>
+    </select>
+</mapper>

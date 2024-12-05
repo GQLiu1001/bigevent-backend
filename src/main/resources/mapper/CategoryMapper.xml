@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CategoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.pojo.Category">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+            <result property="categoryAlias" column="category_alias" jdbcType="VARCHAR"/>
+            <result property="createUser" column="create_user" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,category_name,category_alias,
+        create_user,create_time,update_time
+    </sql>
+    <insert id="addCategory">
+        insert into category(category_name, category_alias, create_time, update_time, create_user)
+        values(#{categoryName}, #{categoryAlias}, now(), now(), #{id})
+    </insert>
+    <update id="updateCategory">
+-- 自动拆箱
+        update  category set category_name=#{categoryName},category_alias=#{categoryAlias},update_time=now() where id=#{id}
+    </update>
+    <delete id="deleteCategory">
+        SET FOREIGN_KEY_CHECKS = 0;delete  from category where id=#{id};
+        SET FOREIGN_KEY_CHECKS = 1
+    </delete>
+    <delete id="deleteAll">
+        delete from category;
+        ALTER TABLE category AUTO_INCREMENT = 1;
+    </delete>
+    <select id="getCategory" resultType="com.example.pojo.Category">
+        select * from category
+    </select>
+    <select id="getCategoryDetail" resultType="com.example.pojo.Category">
+        select * from  category where id=#{id}
+    </select>
+
+</mapper>
