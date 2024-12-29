@@ -12,8 +12,8 @@ import java.io.InputStream;
 
 public class AliossUtil {
     private static final String ENDPOINT = "https://oss-cn-shanghai.aliyuncs.com";
-    private static final String ACCESS_KEY_ID = "LTAI5tB9uRWNQQ4rNAjLQmKk";
-    private static final String ACCESS_KEY_SECRET = "7gVkXxgVwUlWDtWSqNgnlNKCkyMcs5";
+    private static final String ACCESS_KEY_ID = "";
+    private static final String ACCESS_KEY_SECRET = "";
     private static final String BUCKETNAME = "big-event-rabbittank";
     private static final String REGION = "cn-shanghai";
     public static String uploadFile(String objectName , InputStream in) throws Exception {
@@ -66,8 +66,8 @@ public class AliossUtil {
 //    String endpoint = "https://oss-cn-shanghai.aliyuncs.com";
 // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
 //        EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();
-//    String ACCESS_KEY_ID = "LTAI5tB9uRWNQQ4rNAjLQmKk";
-//    String ACCESS_KEY_SECRET = "7gVkXxgVwUlWDtWSqNgnlNKCkyMcs5";
+//    String ACCESS_KEY_ID = "";
+//    String ACCESS_KEY_SECRET = "";
 // 填写Bucket名称，例如examplebucket。
 //    String bucketName = "big-event-rabbittank";
 // 填写Object完整路径，完整路径中不能包含Bucket名称，例如exampledir/exampleobject.txt。
