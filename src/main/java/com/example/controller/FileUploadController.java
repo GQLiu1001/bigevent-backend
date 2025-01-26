@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.pojo.Result;
-import com.example.utils.AliossUtil;
+import com.example.utils.MinioUtil;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,12 +18,12 @@ import java.util.UUID;
 public class FileUploadController {
 
     @PostMapping("/upload")
-    public Result upload(MultipartFile file) throws Exception {
+    public Result<?> upload(MultipartFile file) throws Exception {
         String orginalFilename=file.getOriginalFilename();
         //防止文件覆盖 名字用UUID
         String filename = UUID.randomUUID().toString() + orginalFilename.substring(orginalFilename.lastIndexOf("."));
 //        file.transferTo(new File("D:/upload/"+filename));
-        String url = AliossUtil.uploadFile(filename,file.getInputStream() );
+        String url = MinioUtil.fileUpload(file,orginalFilename);
         return Result.success(url);
     }
 }

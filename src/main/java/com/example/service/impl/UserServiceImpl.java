@@ -6,6 +6,7 @@ import com.example.pojo.User;
 import com.example.service.UserService;
 import com.example.mapper.UserMapper;
 import com.example.utils.ThreadLocalUtil;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.util.Map;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     implements UserService{
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
 

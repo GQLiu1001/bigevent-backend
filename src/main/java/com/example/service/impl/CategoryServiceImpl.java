@@ -5,6 +5,7 @@ import com.example.pojo.Category;
 import com.example.service.CategoryService;
 import com.example.mapper.CategoryMapper;
 import com.example.utils.ThreadLocalUtil;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.util.Map;
 @Service
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category>
     implements CategoryService{
-    @Autowired
+    @Resource
     private CategoryMapper categoryMapper;
 
     @Override

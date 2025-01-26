@@ -5,7 +5,6 @@ import com.aliyun.oss.common.auth.*;
 import com.aliyun.oss.common.comm.SignVersion;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.oss.model.PutObjectResult;
-import java.io.File;
 import java.io.FileInputStream;
 
 public class Demo {
